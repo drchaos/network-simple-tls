@@ -280,7 +280,7 @@ makeServerParams cred ycStore = def
       Nothing -> return T.CertificateUsageAccept
       Just cs -> do
         let checks = X.defaultChecks { X.checkFQHN = False }
-        es <- X.validate X.HashSHA256 X.defaultHooks checks cs def ("","") certs
+        es <- X.validate X.HashSHA256 X.defaultHooks checks cs def def ("","") certs
         case es of
           [] -> pure T.CertificateUsageAccept
           errs' -> pure (T.CertificateUsageReject (T.CertificateRejectOther
